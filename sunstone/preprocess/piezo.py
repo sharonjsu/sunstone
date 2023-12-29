@@ -195,6 +195,8 @@ def read_piezo_xml(xmlpath, channel=None):
     sequences : pandas.DataFrame
         Dataframe of each frame's metadata
     """
+
+
     def shard_helper(stateshard):
         # check if right tag
         if stateshard.tag != 'PVStateShard':
@@ -227,6 +229,8 @@ def read_piezo_xml(xmlpath, channel=None):
                     ] = attrib['value']
         return settings
     ###
+
+    
     tree = ET.parse(xmlpath)
     root = tree.getroot()
     date = root.attrib['date']
