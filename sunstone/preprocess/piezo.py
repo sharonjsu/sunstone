@@ -136,11 +136,14 @@ def get_prairieview_data_for_piezo(
         filenames = np.array(filenames)
         
         zplane.insert(i,np.array(_memmap_tiffs(filenames, rec_folder_path,n_jobs=n_jobs)))
-    
+    ndTime=[]
+    for i in sequences['index'].drop_duplicates():
+        ndTime.insert(i,np.array(sequences[sequences['index']==i]['absoluteTime']))
     
     data2insert = dict(
         rate=1 / pv_settings['framePeriod'],
         timestamps=np.array(sequences['absoluteTime']),
+        timeStack = np.array(ndTime), # Need to test
         movie=np.array(zplane),
         tiff_folder_location=rec_folder_path,
         imaging_offset=sequences['absoluteTime'].iloc[0],
@@ -180,7 +183,7 @@ def get_prairieview_data_for_piezo(
         else:
             os.chdir(savepath)
         print(f'Saving data to npz file for {date}-{file_extension} at {os.getcwd()}.')
-        np.savez_compressed(f'tzseries-{file_extension}', imageStack = zplane, imagingOffset = data2insert['imaging_offset'], timestamps=data2insert['timestamps'])
+        np.savez_compressed(f'tzseries-{file_extension}', imageStack = zplane, imagingOffset = data2insert['imaging_offset'], timestamps=data2insert['timestamps'], timeStack = data2insert['timeStack'])
     
     return data2insert
 
