@@ -1,5 +1,5 @@
 import warnings
-from sklearn.decomposition import PCA, KernelPCA
+from sklearn.decomposition import KernelPCA
 from sklearn.base import BaseEstimator, RegressorMixin
 from sklearn.multioutput import MultiOutputRegressor
 from sklearn.preprocessing import StandardScaler
