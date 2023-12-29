@@ -1,16 +1,10 @@
-from datetime import timedelta
-from glob import glob
 import os
 import xml.etree.ElementTree as ET
 import pandas as pd
 import numpy as np
-from numpy.lib.format import open_memmap
 from warnings import warn
-from PIL import Image
-from joblib import Parallel, delayed
 
-import scipy.io
-
+from sunstone.utils import XmlStructureError
 
 from sunstone.preprocess.prairieview import find_recording, _get_column, _memmap_tiffs
 

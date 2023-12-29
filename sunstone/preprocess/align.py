@@ -3,7 +3,7 @@ import warnings
 import numpy as np
 from scipy.interpolate import interp1d
 
-from sunstone.utils import events_binary
+from sunstone.utils.misc import events_binary
 
 def align_to_trigger(
     unaligned_timestamps, unaligned_trigger,
